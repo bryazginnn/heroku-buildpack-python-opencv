@@ -270,7 +270,7 @@ cmake_url="http://www.cmake.org/files/v2.8/cmake-2.8.6.tar.gz"
 cmake_file="cmake-${cmake_version}.tar.gz"
 cmake_tar_dir="cmake-${cmake_version}"
 
-opencv_version="2.4.5"
+opencv_version="2.4.9"
 opencv_dir="opencv-${opencv_version}"
 opencv_file="${opencv_dir}.tar.gz"
 # https://s3.amazonaws.com/nerdglasses/opencv/OpenCV-2.4.2.tar.bz2
@@ -312,9 +312,11 @@ if [ ! -f ${cache_target} ]; then
 
   echo "Compiling OpenCV v${opencv_version}..." | indent
   #Compile OpenCV
-  curl -s ${opencv_url} > ${opencv_file}
-  tar xf ${opencv_file}
-  cd ${opencv_dir}
+  echo "Downloading opencv"
+  wget -O opencv-2.4.9.zip http://sourceforge.net/projects/opencvlibrary/files/opencv-unix/2.4.9/opencv-2.4.9.zip/download
+  echo "Installing OpenCV 2 4 9" 
+  unzip opencv-2.4.9.zip
+  cd opencv-2.4.9
   mkdir build
   cd build
   cmake -DCMAKE_INSTALL_PREFIX=${target} -DCMAKE_FIND_ROOT_PATH=${target} -DCMAKE_BUILD_TYPE=RELEASE -DWITH_FFMPEG=OFF -DWITH_QT=ON -D =ON -DWITH_TBB=ON -DBUILD_NEW_PYTHON_SUPPORT=ON -DWITH_V4L=ON  -DBUILD_SHARED_LIBS=OFF -DCMAKE_SHARED_LINKER_FLAGS="-fPIC" .. | indent
