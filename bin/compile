@@ -312,7 +312,7 @@ if [ ! -f ${cache_target} ]; then
 
   echo "Compiling OpenCV v${opencv_version}..." | indent
   #Compile OpenCV
-  curl -s ${opencv_url} > ${opencv_file}
+  curl -L ${opencv_url} > ${opencv_file}
   jar xf ${opencv_file}
   cd ${opencv_dir}
   mkdir build
